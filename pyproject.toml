@@ -1,0 +1,23 @@
+[build-system]
+requires = ["flit_core >=2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.metadata]
+module = "msym"
+author = "Mustafa Quraish"
+author-email = "mustafa@cs.toronto.edu"
+home-page = "https://github.com/mustafaquraish/msym"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "License :: OSI Approved :: MIT License",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+]
+description-file = "README.md"
+requires-python=">=3.5"
+
+[tool.flit.metadata.requires-extra]
+test = [
+    "pytest",
+]
