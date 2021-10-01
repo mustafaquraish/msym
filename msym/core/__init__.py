@@ -2,8 +2,9 @@ from .symbol import *
 from .integer import *
 from .rational import *
 
-from msym.core.addition import Addition
-from msym.core.subtraction import Subtraction
-from msym.core.multiplication import Multiplication
-from msym.core.division import Division
-from msym.core.power import Power
+from .addition import Addition
+from .subtraction import Subtraction
+from .multiplication import Multiplication
+from .division import Division
+from .power import Power
+from .log import Logarithm, log

@@ -61,18 +61,18 @@ class Multiplication(Expression):
             if left.left.is_constant():
                 # (5 * x) * 5 -> (5 * 5) * x
                 if right.is_constant():
-                    return Multiplication(left.left * right, left.right)
+                    return (left.left * right) * left.right
                 # (5 * b) * c -> 5 * (b * c)
                 else:
-                    return Multiplication(left.left, left.right * right)
+                    return left.left * (left.right * right)
         if isinstance(right, Multiplication):
             if right.left.is_constant():
                 # 5 * (5 * x) -> (5 * 5) * x
                 if left.is_constant():
-                    return Multiplication(left * right.left, right.right)
+                    return (left * right.left) * right.right
                 # b * (5 * c) -> 5 * (b * c)
                 else:
-                    return Multiplication(right.left, left * right.right)
+                    return right.left * (left * right.right)
 
         # Pull out common terms and replace with power.
         # Note: This only assumes associativity, not commutivity

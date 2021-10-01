@@ -33,6 +33,16 @@ class Division(Expression):
             return left
         if (left == Int(0)):
             return Int(0)
+
+        from .power import Power
+        if isinstance(left, Power):
+            if left.left == right:
+                return left.left ** (left.right - 1)
+        if isinstance(right, Power):
+            if right.left == left:
+                return Division(Int(1), right.left ** (right.right - 1))
+
+
         return Division(left, right)
     
     def eval(self, env):

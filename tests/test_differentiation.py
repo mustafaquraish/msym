@@ -43,8 +43,17 @@ class Test_Differentiation:
         assert (x * x * x).diff(x) == 3 * (x ** 2)
         assert (x ** 9).diff(x) == 9 * (x ** 8)
 
-    def test_power(self):
+    def test_differentiate_power(self):
         x = Symbol('x')
         assert (x ** Rational(1, 2)).diff(x) == Rational(1, 2) * x ** Rational(-1, 2)
 
+    def test_differentiate_log(self):
+        x = Symbol('x')
+        assert (x.log()).diff(x) == 1 / x
+        assert log(x).diff(x) == 1 / x
+        assert ((x ** 2).log()).diff(x) == 2 / x
+        assert log(x ** 2).diff(x) == 2 / x
+
+        y = log(x + 1)
+        assert y.diff(x) == 1 / (x + 1)
     

@@ -29,6 +29,10 @@ class Matrix(Symbol):
         for i in range(self.rows):
             s += (-1)**i * self.data[0][i] * self.submatrix(0, i).determinant()
         return s
+
+    # For compatibility with sympy
+    def det(self):
+        return self.determinant()
     
     def __repr__(self):
         txt = "[\n"

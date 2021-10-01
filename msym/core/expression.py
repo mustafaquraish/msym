@@ -74,6 +74,10 @@ class Expression:
         from .rational import Rational
         return self ** Rational(1, 2)
 
+    def log(self):
+        from .log import Logarithm
+        return Logarithm(self)
+
     # Should be called by the user
     def subs(self, env=None, **kwargs):
         from .symbol import Symbol
