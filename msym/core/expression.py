@@ -85,9 +85,11 @@ class Expression:
 
         if env is None and not kwargs:
             raise ValueError("No substitutions provided")
+        if env is None:
+            env = {}
         for k, v in kwargs.items():
             if k not in env:
-                env[k] = kwargs[v]
+                env[k] = v
 
         # Convert all symbols to names
         env = {str(k): v for k, v in env.items()}

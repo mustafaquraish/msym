@@ -1,6 +1,7 @@
 from .symbol import *
 from .integer import *
 from .rational import *
+from .expression import *
 
 from .addition import Addition
 from .subtraction import Subtraction
