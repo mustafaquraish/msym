@@ -25,6 +25,14 @@ class Int(Expression):
         return Int(self.value * other.value)
 
     @handle_only()
+    def __mod__(self, other):
+        return Int(self.value % other.value)
+
+    @handle_only()
+    def __rmod__(self, other):
+        return Int(other.value % self.value)
+
+    @handle_only()
     def __rmul__(self, other):
         return Int(self.value * other.value)
 
@@ -48,15 +56,13 @@ class Int(Expression):
 
     @handle_only()
     def __floordiv__(self, other):
-        return Int(self.value // other.value)
+        from .intdiv import IntDiv
+        return IntDiv(self.value, other.value)
 
     @handle_only()
     def __rfloordiv__(self, other):
-        return Int(other.value // self.value)
-
-    @handle_only()
-    def __rfloordiv__(self, other):
-        return Int(other.value // self.value)
+        from .intdiv import IntDiv
+        return IntDiv(other.value, self.value)
 
     # Just for completeness
     def floor(self):
@@ -72,6 +78,20 @@ class Int(Expression):
             return self.value == other
         if (isinstance(other, Int)):
             return self.value == other.value
+        return False
+
+    def __le__(self, other):
+        if isinstance(other, int):
+            return self.value <= other
+        if (isinstance(other, Int)):
+            return self.value <= other.value
+        return False
+
+    def __ge__(self, other):
+        if isinstance(other, int):
+            return self.value >= other
+        if (isinstance(other, Int)):
+            return self.value >= other.value
         return False
 
     def diff(self, var):

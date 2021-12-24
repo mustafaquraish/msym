@@ -33,6 +33,16 @@ class Expression:
         return Multiplication(other, self).simplify()
 
     @symbolicate
+    def __mod__(self, other):
+        from .modulo import Modulo
+        return Modulo(self, other).simplify()
+
+    @symbolicate
+    def __rmod__(self, other):
+        from .modulo import Modulo
+        return Modulo(other, self).simplify()
+
+    @symbolicate
     def __truediv__(self, other):
         from .division import Division
         return Division(self, other).simplify()
@@ -41,6 +51,16 @@ class Expression:
     def __rtruediv__(self, other):
         from .division import Division
         return Division(other, self).simplify()
+
+    @symbolicate
+    def __floordiv__(self, other):
+        from .intdiv import IntDiv
+        return IntDiv(self, other).simplify()
+
+    @symbolicate
+    def __rfloordiv__(self, other):
+        from .intdiv import IntDiv
+        return IntDiv(other, self).simplify()
 
     @symbolicate
     def __pow__(self, other):

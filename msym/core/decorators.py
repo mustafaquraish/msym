@@ -2,7 +2,7 @@
 def symbolicate(func):
     def wrapper(*args, **kwargs):
         from .integer import Int
-        args = [ (Int(a) if isinstance(a, int) else a) for a in args ]
+        args = [ (Int(a) if isinstance(a, (int, bool)) else a) for a in args ]
         return func(*args, **kwargs)
     return wrapper
 

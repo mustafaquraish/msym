@@ -12,6 +12,7 @@ class Prec(Enum):
     SUB = auto()
     MULT = auto()
     DIV = auto()
+    INTDIV = auto()
     NEG = auto()
     POW = auto()
     CALL = auto()
@@ -71,6 +72,11 @@ class CodeGenerator:
         B = self.gen(E.right, Prec.DIV)
         return f'{A} / {B}', Prec.MULT
 
+    def intdiv(self, E):
+        A = self.gen(E.left, Prec.MULT)
+        B = self.gen(E.right, Prec.INTDIV)
+        return f'{A} // {B}', Prec.MULT
+
     def power(self, E):
         A = self.gen(E.left, Prec.MULT)
         B = self.gen(E.right, Prec.POW)
@@ -95,6 +101,8 @@ class CodeGenerator:
             return self.wrap(*self.multiplication(E), prec)
         if isinstance(E, Division):
             return self.wrap(*self.division(E), prec)
+        if isinstance(E, IntDiv):
+            return self.wrap(*self.intdiv(E), prec)
         if isinstance(E, Power):
             return self.wrap(*self.power(E), prec)
         if isinstance(E, Logarithm):
